@@ -1,4 +1,4 @@
-package com.sample.avinashdodda.flickrgallery.request;
+package com.sample.avinashdodda.flickrgallery.requests;
 import com.octo.android.robospice.request.springandroid.SpringAndroidSpiceRequest;
 import com.sample.avinashdodda.flickrgallery.models.Feed;
 
@@ -10,6 +10,7 @@ import org.springframework.http.converter.xml.SimpleXmlHttpMessageConverter;
 
 public class FlickrApiRequest extends SpringAndroidSpiceRequest<Feed> {
 
+    private static final String FLICKR_URL = "https://api.flickr.com/services/feeds/photos_public.gne";
     private String cityName;
     private String cacheKey;
 
@@ -21,7 +22,7 @@ public class FlickrApiRequest extends SpringAndroidSpiceRequest<Feed> {
     @Override
     public Feed loadDataFromNetwork() throws Exception {
 
-        String url = String.format("https://api.flickr.com/services/feeds/photos_public.gne?tags=%s", cityName);
+        String url = String.format(FLICKR_URL +"?tags=%s", cityName);
 
         // Add the Simple XML message converter
         getRestTemplate().getMessageConverters().add(new SimpleXmlHttpMessageConverter());
